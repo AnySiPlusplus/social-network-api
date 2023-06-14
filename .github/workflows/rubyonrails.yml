@@ -38,7 +38,7 @@ jobs:
         run: bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run rspec tests
-        run: rspec
+        run: bundle exec rspec
 
   lint:
     runs-on: ubuntu-latest
@@ -51,8 +51,10 @@ jobs:
           bundler-cache: true
       # Add or replace any other lints here
       - name: Security audit dependencies
-        run: bundler-audit --update
+        run: bundle exec bundler-audit --update
       - name: Security audit application code
-        run: brakeman -q -w2
+        run: bundle exec brakeman -q -w2
+      - name: Lint Fasterer
+        run: bundle exec fasterer
       - name: Lint Ruby files
-        run: rubocop
+        run: bundle exec rubocop
