@@ -1,0 +1,80 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/session":
+    post:
+      summary: Creates a session
+      tags:
+      - Session
+      parameters: []
+      responses:
+        '200':
+          description: session created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    password:
+                      type: string
+              required:
+              - login
+              - password
+    delete:
+      summary: delete session
+      tags:
+      - Session
+      parameters:
+      - in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: delete session
+        '401':
+          description: not authorized
+  "/api/v1/users":
+    post:
+      summary: Creates a user
+      tags:
+      - User
+      operationId: TestUser
+      parameters: []
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: wrong login params
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                user:
+                  type: object
+                  properties:
+                    login:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+              required:
+              - login
+              - password
+              - password_confirmation
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000

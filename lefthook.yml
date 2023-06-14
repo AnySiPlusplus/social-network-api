@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  commands:
+    brakeman:
+      run: brakeman --no-pager
+    rubocop:
+      run: bundle exec rubocop
+    fasterer:
+      run: fasterer
+    bundle-audit:
+      run: bundle-audit

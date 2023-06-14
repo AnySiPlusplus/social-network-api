@@ -2,13 +2,9 @@ module HandleStatusCode
   def default_handler(result)
     success_response(result) if result.status == :created
     success_response(result) if result.status == :ok
+    no_content_response if result.status == :no_content
+    forbidden_response(result) if status == :forbidden
     invalid_response(result) unless result.success?
-
-    # {
-    #   no_content: ->(result) { result.success? && model_not_exist?(result) },
-    #   forbidden: ->(result) { result['result.status'] == :forbidden },
-    #   not_found: ->(result) { result[:model].nil? && result.failure? }
-    # }
   end
 
   private
@@ -22,4 +18,12 @@ module HandleStatusCode
   def invalid_response(result)
     render json: { errors: result.message }, status: :unprocessable_entity
   end
+
+  def no_content_response
+    render json: {}, status: :no_content
+  end
+
+  # def forbidden_response(result)
+  #   render json: { message: result.message }, status: result.status
+  # end
 end
