@@ -1,0 +1,8 @@
+en:
+  user:
+    errors:
+      login: 'has already been taken'
+      password: 'must be alphanumeric format without spaces'
+      password_confirmation: 'does not match password'
+    success_messages:
+      registration: "You’re successfully registered!"

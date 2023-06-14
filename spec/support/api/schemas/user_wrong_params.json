@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "required": [],
+  "properties": {
+    "errors": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "login": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "password": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

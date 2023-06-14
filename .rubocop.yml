@@ -1,0 +1,47 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-i18n
+  - rubocop-performance
+Style/Documentation:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'config/**/*.rb'
+    - 'app/admin/*.rb'
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/*.rb'
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*.rb'
+I18n/RailsI18n/DecorateString:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Metrics/AbcSize:
+  Exclude:
+    - 'db/**/*.rb'
+Style/ClassAndModuleChildren:
+  Enabled: false
+Lint/UnreachableCode:
+  Exclude:
+    - '*/**/concepts/**/operation/**/*'
+Style/SignalException:
+  Exclude:
+    - '*/**/concepts/**/operation/**/*'
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - 'spec/**/*.rb'
+RSpec/VariableName:
+  Exclude:
+    - 'spec/**/*.rb'
+RSpec/RepeatedExampleGroupDescription:
+    Exclude:
+      - 'spec/**/*.rb'
+Naming/MethodName:
+  Exclude:
+      - 'lib/**/*.rb'
+RSpec/MultipleMemoizedHelpers:
+  Max: 6
