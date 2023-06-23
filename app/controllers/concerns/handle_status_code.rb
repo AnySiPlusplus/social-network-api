@@ -1,9 +1,10 @@
 module HandleStatusCode
   def default_handler(result)
-    success_response(result) if result.status == :created
-    success_response(result) if result.status == :ok
-    no_content_response if result.status == :no_content
-    forbidden_response(result) if status == :forbidden
+    return success_response(result) if result.status == :created
+    return success_response(result) if result.status == :ok
+    return no_content_response if result.status == :no_content
+    return forbidden_response(result) if result.status == :forbidden
+
     invalid_response(result) unless result.success?
   end
 
@@ -23,7 +24,7 @@ module HandleStatusCode
     render json: {}, status: :no_content
   end
 
-  # def forbidden_response(result)
-  #   render json: { message: result.message }, status: result.status
-  # end
+  def forbidden_response(result)
+    render json: { message: result.message }, status: result.status
+  end
 end
