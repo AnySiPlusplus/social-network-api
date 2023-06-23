@@ -185,7 +185,7 @@ RSpec.describe 'Messages', type: :request do
         end
 
         response '422', 'unprocessed entity' do
-          let!(:message) { create(:message, user_id: user.id) }
+          let!(:message) { create(:message, user:) }
           let(:params) { { text: nil } }
           let(:id) { message.id }
 
@@ -193,9 +193,8 @@ RSpec.describe 'Messages', type: :request do
         end
 
         response '404', 'not found' do
-          let!(:message) { create(:message, user_id: user.id) }
-          let(:params) { { title: message.text } }
           let(:id) { 0 }
+          let(:params) { { to_whom: 0 } }
 
           run_test! do
             expect(response).to match_json_schema('not_found')
