@@ -3,6 +3,7 @@ module Api
     module Messages
       class DestroyMessage < BaseInteractor
         def call
+          return not_found unless current_message
           return access_denied unless belong_to_user?
 
           result

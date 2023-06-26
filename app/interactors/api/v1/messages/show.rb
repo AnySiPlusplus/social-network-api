@@ -3,8 +3,8 @@ module Api
     module Messages
       class Show < BaseInteractor
         def call
-          return access_denied unless belong_to_user?
           return not_found unless current_message
+          return access_denied unless belong_to_user?
 
           result
         end
@@ -13,12 +13,6 @@ module Api
 
         def current_message
           @current_message ||= Message.find_by(id: context.params[:id])
-        end
-
-        def not_found
-          context.staus = :not_found
-          context.message = { message: :not_found }
-          context.fail!
         end
 
         def result
