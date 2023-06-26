@@ -194,7 +194,7 @@ RSpec.describe 'Messages', type: :request do
 
         response '404', 'not found' do
           let(:id) { 0 }
-          let(:params) { { to_whom: 0 } }
+          let(:params) { {} }
 
           run_test! do
             expect(response).to match_json_schema('not_found')

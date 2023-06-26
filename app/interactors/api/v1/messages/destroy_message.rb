@@ -12,7 +12,7 @@ module Api
         private
 
         def current_message
-          @current_message ||= Message.find(context.params[:id])
+          @current_message ||= Message.find_by(id: context.params[:id])
         end
 
         def result
