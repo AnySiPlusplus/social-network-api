@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resource :session, only: %i[create destroy]
 
       resources :users, only: :create
+      resources :messages
     end
   end
 end

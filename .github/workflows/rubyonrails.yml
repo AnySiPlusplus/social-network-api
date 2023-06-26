@@ -7,9 +7,9 @@
 name: "Ruby on Rails CI"
 on:
   push:
-    branches: [ "feature/authentification" ]
+    branches: [ "feature/communication" ]
   pull_request:
-    branches: [ "feature/authentification" ]
+    branches: [ "feature/communication" ]
 jobs:
   test:
     runs-on: ubuntu-latest

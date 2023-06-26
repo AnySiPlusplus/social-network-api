@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read('.ruby-version').split.join
 
-gem 'action_policy'
 gem 'acts_as_list'
 gem 'aws-sdk-s3', '~> 1.114'
 gem 'bcrypt-ruby'
