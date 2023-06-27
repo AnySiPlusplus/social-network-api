@@ -4,7 +4,7 @@ module Api
       class UpdateMessage < BaseInteractor
         def call
           return not_found unless current_message
-          return access_denied unless belong_to_user?
+          return access_denied unless belong_to_user?(Api::V1::MessagePolicy, current_message)
 
           current_form.validate(permit_params) ? good_outcome : bad_outcome
         end
@@ -16,11 +16,6 @@ module Api
           context.form = current_form.model
           context.success_message = { operation: :success }
           context.status = :ok
-        end
-
-        def bad_outcome
-          context.message = current_form.errors.messages
-          context.fail!
         end
 
         def current_message
