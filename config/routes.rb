@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :users, only: :create
       resources :messages
       resources :news
+      resource :newsline, only: :show
     end
   end
 end

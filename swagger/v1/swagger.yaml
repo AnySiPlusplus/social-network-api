@@ -274,6 +274,23 @@ paths:
           description: forbidden
         '404':
           description: not found
+  "/api/v1/newsline":
+    parameters:
+    - in: header
+      name: Authorization
+      required: true
+      description: Client token
+      schema:
+        type: string
+    get:
+      summary: show newsline
+      tags:
+      - Newsline
+      responses:
+        '200':
+          description: show project
+        '401':
+          description: not aurhorized
   "/api/v1/session":
     post:
       summary: Creates a session
