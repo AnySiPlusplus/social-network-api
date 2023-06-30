@@ -3,14 +3,14 @@ module Api
     module Users
       class CreateUser < BaseInteractor
         def call
-          user_form.validate(permit_params) ? good_outcome : bad_outcome
+          current_form.validate(permit_params) ? good_outcome : bad_outcome
         end
 
         private
 
         def good_outcome
-          user_form.save
-          context.form = User.find_by(login: user_form.login)
+          current_form.save
+          context.form = User.find_by(login: current_form.login)
           context.status = :created
           context.success_message = { success_message: I18n.t('user.success_messages.registration') }
           generate_access_token
@@ -21,13 +21,8 @@ module Api
           context.headers = result.headers
         end
 
-        def bad_outcome
-          context.message = user_form.errors.messages
-          context.fail!
-        end
-
-        def user_form
-          @user_form ||= Api::V1::UserForm.new(User.new)
+        def current_form
+          @current_form ||= Api::V1::UserForm.new(User.new)
         end
 
         def permit_params

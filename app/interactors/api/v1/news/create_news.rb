@@ -1,10 +1,8 @@
 module Api
   module V1
-    module Messages
-      class CreateMessage < BaseInteractor
+    module News
+      class CreateNews < BaseInteractor
         def call
-          return context.fail! unless to_whom_to_send
-
           current_form.validate(permit_params) ? good_outcome : bad_outcome
         end
 
@@ -18,15 +16,11 @@ module Api
         end
 
         def current_form
-          @current_form ||= Api::V1::MessageForm.new(Message.new(user: context.current_user))
-        end
-
-        def to_whom_to_send
-          User.find(permit_params[:to_whom])
+          @current_form ||= Api::V1::NewsForm.new(context.current_user.news.build)
         end
 
         def permit_params
-          @permit_params ||= context.params.require(:message).permit(:text, :to_whom, :file)
+          @permit_params ||= context.params.require(:news).permit(:content, :file)
         end
       end
     end

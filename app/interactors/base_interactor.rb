@@ -13,7 +13,12 @@ class BaseInteractor
     context.fail!
   end
 
-  def belong_to_user?
-    Api::V1::MessagePolicy.new(current_message, context.current_user).belong_to_user?
+  def bad_outcome
+    context.message = current_form.errors.messages
+    context.fail!
+  end
+
+  def belong_to_user?(policy_class, model)
+    policy_class.new(model, context.current_user).belong_to_user?
   end
 end

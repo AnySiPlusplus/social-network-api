@@ -142,6 +142,155 @@ paths:
           description: forbidden
         '404':
           description: not found
+  "/api/v1/news":
+    post:
+      summary: Creates a news
+      tags:
+      - News
+      parameters:
+      - in: header
+        name: Authorization
+        required: true
+        description: Client token
+        schema:
+          type: string
+      responses:
+        '201':
+          description: News created
+        '422':
+          description: unprocessable entity
+        '401':
+          description: not aurhorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                news:
+                  type: object
+                  properties:
+                    content:
+                      type: string
+                    file:
+                      type: file
+              required:
+              - text
+              - file
+    get:
+      summary: index news
+      tags:
+      - News
+      parameters:
+      - in: header
+        name: Authorization
+        required: true
+        description: Client token
+        schema:
+          type: string
+      responses:
+        '200':
+          description: index news
+        '401':
+          description: not aurhorized
+  "/api/v1/news/{id}":
+    parameters:
+    - in: header
+      name: Authorization
+      required: true
+      description: Client token
+      schema:
+        type: string
+    delete:
+      summary: delete news
+      tags:
+      - News
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: delete news
+        '401':
+          description: un authorized
+        '403':
+          description: forbidden
+        '404':
+          description: not found
+    put:
+      summary: update news
+      tags:
+      - News
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: update news
+        '403':
+          description: forbidden
+        '401':
+          description: un authorized
+        '422':
+          description: unprocessed entity
+        '404':
+          description: not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                news:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                    file:
+                      type: file
+              required:
+              - text
+              - file
+    get:
+      summary: show news
+      tags:
+      - News
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: show project
+        '401':
+          description: not aurhorized
+        '403':
+          description: forbidden
+        '404':
+          description: not found
+  "/api/v1/newsline":
+    parameters:
+    - in: header
+      name: Authorization
+      required: true
+      description: Client token
+      schema:
+        type: string
+    get:
+      summary: show newsline
+      tags:
+      - Newsline
+      responses:
+        '200':
+          description: show project
+        '401':
+          description: not aurhorized
   "/api/v1/session":
     post:
       summary: Creates a session

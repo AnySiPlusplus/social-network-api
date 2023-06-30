@@ -4,7 +4,7 @@ module Api
       class DestroyMessage < BaseInteractor
         def call
           return not_found unless current_message
-          return access_denied unless belong_to_user?
+          return access_denied unless belong_to_user?(Api::V1::MessagePolicy, current_message)
 
           result
         end
