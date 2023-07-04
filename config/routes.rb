@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :messages
       resources :news
       resource :newsline, only: :show
+      resources :friends, except: %i[update show]
     end
   end
 end
