@@ -1,24 +1,7 @@
-# README
+##### Prerequisites
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The setups steps expect following tools installed on the system.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Github
+- Ruby [3.2.2](https://github.com/organization/project-name/blob/master/.ruby-version#L1)
+- Rails [7.0.5](https://github.com/organization/project-name/blob/master/Gemfile#L12)
